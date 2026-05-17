@@ -921,4 +921,10 @@ a {
         width: 100px;
         height: 100px;
     }
+    #prevPosterBtn {
+        left: 6%;
+    }
+    #nextPosterBtn {
+        right: 6%;
+    }
 }
