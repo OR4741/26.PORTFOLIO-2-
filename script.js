@@ -111,8 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         function updatePosterSlider(transition = true) {
-            if (!posterTrack.children[0]) return;
-            
             if (transition) {
                 posterTrack.style.transition = 'transform 0.5s ease';
             } else {
@@ -124,12 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const moveAmount = currentPosterIndex * (itemWidth + gap);
             
             posterTrack.style.transform = `translateX(-${moveAmount}px)`;
-        }
-
-        function unlockTransition() {
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 600);
         }
 
         prevPosterBtn.addEventListener('click', () => {
@@ -145,8 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
             isTransitioning = true;
             currentPosterIndex -= itemsPerView;
             updatePosterSlider(true);
-
-            unlockTransition();
         });
 
         nextPosterBtn.addEventListener('click', () => {
@@ -156,8 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
             isTransitioning = true;
             currentPosterIndex += itemsPerView;
             updatePosterSlider(true);
-
-            unlockTransition();
         });
 
         posterTrack.addEventListener('transitionend', () => {
