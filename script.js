@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function updatePosterSlider(transition = true) {
             if (transition) {
-                posterTrack.style.transition = 'transform 0.5s ease';
+                posterTrack.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
             } else {
                 posterTrack.style.transition = 'none';
             }
