@@ -92,80 +92,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Poster Slider
+    // Poster Slider (Infinite Marquee setup)
     const posterTrack = document.getElementById('posterTrack');
-    const prevPosterBtn = document.getElementById('prevPosterBtn');
-    const nextPosterBtn = document.getElementById('nextPosterBtn');
-    
-    if (posterTrack && prevPosterBtn && nextPosterBtn) {
-        let currentPosterIndex = 0;
-        let isTransitioning = false;
+    if (posterTrack) {
+        const group1 = document.createElement('div');
+        group1.className = 'poster-group';
         
-        // Clone items for true infinite loop
-        const originalItems = Array.from(posterTrack.children);
-        const realTotalItems = originalItems.length;
-        
-        originalItems.forEach(item => {
-            const clone = item.cloneNode(true);
-            posterTrack.appendChild(clone);
-        });
-        
-        function updatePosterSlider(transition = true) {
-            if (transition) {
-                posterTrack.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
-            } else {
-                posterTrack.style.transition = 'none';
-            }
-            
-            const gap = 32;
-            const itemWidth = posterTrack.children[0].offsetWidth;
-            const moveAmount = currentPosterIndex * (itemWidth + gap);
-            
-            posterTrack.style.transform = `translateX(-${moveAmount}px)`;
+        // Move all current children of posterTrack into group1
+        while (posterTrack.firstChild) {
+            group1.appendChild(posterTrack.firstChild);
         }
-
-        prevPosterBtn.addEventListener('click', () => {
-            if (isTransitioning) return;
-            const itemsPerView = window.innerWidth <= 1024 ? 1 : 3;
-            
-            if (currentPosterIndex < itemsPerView) {
-                currentPosterIndex += realTotalItems;
-                updatePosterSlider(false);
-                posterTrack.offsetHeight; // Force reflow
-            }
-            
-            isTransitioning = true;
-            currentPosterIndex -= itemsPerView;
-            updatePosterSlider(true);
-        });
-
-        nextPosterBtn.addEventListener('click', () => {
-            if (isTransitioning) return;
-            const itemsPerView = window.innerWidth <= 1024 ? 1 : 3;
-            
-            isTransitioning = true;
-            currentPosterIndex += itemsPerView;
-            updatePosterSlider(true);
-        });
-
-        posterTrack.addEventListener('transitionend', () => {
-            isTransitioning = false;
-            
-            if (currentPosterIndex >= realTotalItems) {
-                currentPosterIndex -= realTotalItems;
-                updatePosterSlider(false);
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            isTransitioning = false;
-            if (currentPosterIndex >= realTotalItems) {
-                currentPosterIndex -= realTotalItems;
-            }
-            updatePosterSlider(false);
-        });
         
-        // Setup initial dimensions after a tiny delay for images/layout to render
-        setTimeout(() => updatePosterSlider(false), 100);
+        // Clone the group for seamless loop scrolling
+        const group2 = group1.cloneNode(true);
+        group2.setAttribute('aria-hidden', 'true');
+        
+        // Append both groups to the track
+        posterTrack.appendChild(group1);
+        posterTrack.appendChild(group2);
     }
+
+    // Instagram Mockup - Dynamic Time
+    const phoneTime = document.getElementById('phoneTime');
+    if (phoneTime) {
+        const updateTime = () => {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            phoneTime.textContent = `${hours}:${minutes}`;
+        };
+        updateTime();
+        setInterval(updateTime, 60000);
+    }
+
+    // Instagram Mockup - Fallback Images
+    const instaPostImages = document.querySelectorAll('.insta-post-img');
+    instaPostImages.forEach(img => {
+        const handleFallback = () => {
+            const fallbackUrl = img.getAttribute('data-fallback');
+            if (fallbackUrl && img.src !== fallbackUrl) {
+                img.src = fallbackUrl;
+            }
+        };
+
+        // If the image fails to load (e.g., local social1.png doesn't exist yet)
+        img.addEventListener('error', handleFallback);
+
+        // Check if already failed or not loaded
+        if (img.complete && img.naturalWidth === 0) {
+            handleFallback();
+        }
+    });
+
+    // Instagram Mockup - Interactive Tabs
+    const instaTabs = document.querySelectorAll('.insta-tab');
+    instaTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            instaTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Add a small visual feedback of switching grids
+            const grid = document.getElementById('instaGrid');
+            if (grid) {
+                grid.style.opacity = '0.5';
+                setTimeout(() => {
+                    grid.style.opacity = '1';
+                }, 150);
+            }
+        });
+    });
 });
