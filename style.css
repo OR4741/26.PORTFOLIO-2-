@@ -128,7 +128,7 @@ a {
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
-    border: #ffffff, 4px;
+    border: white, 4px;
 }
 
 .profile-info {
