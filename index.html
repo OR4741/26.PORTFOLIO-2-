@@ -110,7 +110,6 @@
         <ul class="index-list">
             <li><a>LOGOFOLIO</a></li>
             <li><a>DETAIL PAGE</a></li>
-            <li><a>BRANDING</a></li>
             <li><a>BANNER / POSTER</a></li>
         </ul>
     </section>
@@ -240,7 +239,14 @@
     </section>
 
     <!-- TOP BUTTON -->
-    <button id="topBtn" class="top-btn" title="Go to top">TOP</button>
+    <button id="topBtn" class="top-btn" title="Go to top" aria-label="Go to top">
+        <span class="top-text">TOP</span>
+        <span class="top-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </span>
+    </button>
 
     <script src="script.js"></script>
 </body>
