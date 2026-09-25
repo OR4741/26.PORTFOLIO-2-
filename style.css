@@ -752,6 +752,10 @@ a {
     font-weight: 100;
 }
 
+.thankyou-second:first-of-type {
+    margin-bottom: 0;
+}
+
 /* NAVIGATION & TOP BUTTON */
 .navbar {
     position: fixed;
@@ -940,7 +944,6 @@ a {
     }
     .thankyou-second {
     font-size: 1.6rem;
-    margin-bottom: 40px;
     color: var(--text-sub);
     }
     .contact-info {
