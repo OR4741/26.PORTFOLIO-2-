@@ -92,25 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Poster Slider (Infinite Marquee setup)
-    const posterTrack = document.getElementById('posterTrack');
-    if (posterTrack) {
-        const group1 = document.createElement('div');
-        group1.className = 'poster-group';
-        
-        // Move all current children of posterTrack into group1
-        while (posterTrack.firstChild) {
-            group1.appendChild(posterTrack.firstChild);
-        }
-        
-        // Clone the group for seamless loop scrolling
-        const group2 = group1.cloneNode(true);
-        group2.setAttribute('aria-hidden', 'true');
-        
-        // Append both groups to the track
-        posterTrack.appendChild(group1);
-        posterTrack.appendChild(group2);
-    }
 
     // Instagram Mockup - Dynamic Time
     const phoneTime = document.getElementById('phoneTime');
