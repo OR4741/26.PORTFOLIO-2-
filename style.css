@@ -46,16 +46,7 @@ a {
     border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.mobile-mockup {
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
-}
 
-.mobile-mockup:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    background-color: #353545;
-    color: #e5e7eb;
-}
 
 /* Scroll Animation Classes */
 .observe-me {
@@ -598,21 +589,50 @@ a {
 }
 
 .mobile-mockup {
+    position: relative;
     width: 280px;
-    height: 600px;
-    border-radius: 32px;
-    border: 8px solid #4a4a5e;
-    background-color: #fff;
-    overflow: hidden;
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
-    display: flex;
+    height: 577px;
+    aspect-ratio: 730 / 1505;
+    border: none;
+    background: transparent;
+    transition: transform var(--transition-speed) ease, filter var(--transition-speed) ease;
+    display: block;
 }
 
-.mobile-mockup img {
+.mobile-mockup:hover {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45));
+}
+
+.mobile-mockup-screen {
+    position: absolute;
+    top: 1.8%;
+    left: 4.66%;
+    width: 90.68%;
+    height: 96.28%;
+    border-radius: 36px;
+    overflow: hidden;
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+.mobile-mockup-screen img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
+    display: block;
+}
+
+.mobile-mockup-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    display: block;
 }
 
 .long-scroll {
@@ -692,7 +712,7 @@ a {
 /* THANK YOU SECTION */
 .thankyou-section {
     background-color: #13131b;
-    color: #ffffff;
+    color: #bdbdbd;
     text-align: center;
     padding: 152px 20px;
     border-top: 1px solid var(--line-color);
