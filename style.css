@@ -344,7 +344,7 @@ a {
 }
 
 .project-item.no-margin-bottom {
-    margin-bottom: 8px;
+    margin-bottom: 0;
 }
 
 .project-item.second-project {
@@ -570,7 +570,7 @@ a {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr 1fr;
-    gap: 40px;
+    gap: 16px;
     padding: 0 5%;
 }
 
@@ -651,7 +651,7 @@ a {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 16px;
     padding: 0 5%;
 }
 
@@ -661,7 +661,7 @@ a {
     padding: 0 5%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 16px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -673,16 +673,6 @@ a {
     object-fit: contain;
     border-radius: 12px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        filter 0.35s ease;
-}
-
-.poster-img:hover {
-    transform: translateY(-8px) scale(1.02);
-    filter: brightness(1.05);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
-    cursor: pointer;
 }
 
 .banner-img {
@@ -720,6 +710,15 @@ a {
     letter-spacing: 0.05em;
     color: var(--text-sub);
     font-weight: 100;
+}
+
+.thankyou-second a {
+    color: var(--text-sub);
+    transition: color 0.3s ease;
+}
+
+.thankyou-second a:hover {
+    color: #ffffff;
 }
 
 .thankyou-second:first-of-type {
